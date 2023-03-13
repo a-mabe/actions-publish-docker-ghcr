@@ -38,13 +38,13 @@ jobs:
           images: |
             ghcr.io/${{ github.repository }}
               
-      - name: Build and push Docker images
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+#       - name: Build and push Docker images
+#         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+#         with:
+#           context: .
+#           push: true
+#           tags: ${{ steps.meta.outputs.tags }}
+#           labels: ${{ steps.meta.outputs.labels }}
           
       - name: Log levels
         run: |
@@ -52,3 +52,11 @@ jobs:
           echo "This is an info message"
           echo "::warning::This is a warning"
           echo "::error::This is an error"
+          
+      - name: Log grouping
+        run: |
+          echo "::group::Group name"
+          echo "Log entry"
+          echo "::warning::Warning message"
+          echo "::endgroup::"
+          echo "Outside the group"
